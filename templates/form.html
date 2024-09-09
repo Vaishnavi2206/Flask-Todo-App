@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+<h1> Add Todo </h1>
+
+{%block body%} 
+
+<!-- <div style="display: flex;align-items: flex-start;justify-content: center;height: 100vh;margin-top: 40px;"> -->
+<div style="display: flex;align-items: flex-start;justify-content: center;width: 600px;margin-top: 40px;">
+    <div class="container custom-container border" style="margin: 0 auto;padding: 20px;">
+      <div class="d-flex align-items-center justify-content-center">
+        <h2 style="text-align: center;margin-right: 20px;">Add Todo</h2> 
+        <a class="link" href="/">Back</a>
+      </div>
+        <form action="{{url_for('submit') if action!="edit" else url_for('edit',id=todo.id if todo else '')}}" method="post">
+          <div class="mb-3">
+              <input value="{{todo.title if todo else ''}}" name="title" type="text" class="form-control form-control-lg" id="title" placeholder="Title">
+            </div>
+            <div class="mb-3">
+              <textarea name="description" class="form-control form-control-lg" id="description" rows="3" placeholder="Description" >{{todo.description if todo else ''}}</textarea>
+            </div>
+            <div style="display: flex;align-items: center;justify-content: center;">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- TODO LATER -->
+
+<!-- {% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+    <ul>
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %} -->
+
+{% endblock %}
